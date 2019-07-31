@@ -1,0 +1,27 @@
+{
+  "name": "pokerjs",
+  "version": "0.0.1",
+  "description": "Texas Hold'em Poker model",
+  "keywords": [
+    "poker"
+  ],
+  "homepage": "https://github.com/JankoDedic/pokerjs",
+  "bugs": {
+    "url": "https://github.com/JankoDedic/pokerjs/issues"
+  },
+  "repository": "github:JankoDedic/pokerjs",
+  "main": "poker.js",
+  "private": true,
+  "gypfile": true,
+  "scripts": {
+    "install": "npx node-gyp configure && npx node-gyp build",
+    "test": "node test.js"
+  },
+  "author": "Janko Dedic (https://github.com/JankoDedic)",
+  "license": "MIT",
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "node-addon-api": "^1.6.3",
+    "node-gyp": "^5.0.3"
+  }
+}

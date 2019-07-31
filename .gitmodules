@@ -1,0 +1,3 @@
+[submodule "src/poker"]
+	path = src/poker
+	url = https://github.com/JankoDedic/poker
