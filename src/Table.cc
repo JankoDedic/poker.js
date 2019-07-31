@@ -1,9 +1,4 @@
 #include "Table.h"
-/* #include "Player.h" */
-/* #include "Pot.h" */
-/* #include "RoundOfBetting.h" */
-/* #include "CommunityCards.h" */
-/* #include "TableAutomaticAction.h" */
 
 #include <random>
 
@@ -129,19 +124,6 @@ Table::Table(const Napi::CallbackInfo& info) try
     throw Napi::Error::New(info.Env(), e.what());
 }
 
-/* Napi::Value Table::GetSeats(const Napi::CallbackInfo& info) { */
-/*     auto array = Napi::Array::New(info.Env(), poker::table::num_seats); */
-/*     auto seats = _table.seats(); */
-/*     for (std::size_t i = 0; i < poker::table::num_seats; ++i) { */
-/*         if (seats.occupancy()[i]) { */
-/*             array.Set(i, Player::ToObject(info.Env(), seats[i])); */
-/*         } else { */
-/*             array.Set(i, info.Env().Null()); */
-/*         } */
-/*     } */
-/*     return array; */
-/* } */
-
 Napi::Value Table::GetSeats(const Napi::CallbackInfo& info) try {
     auto array = Napi::Array::New(info.Env(), poker::table::num_seats);
     auto seats = _table.seats();
@@ -185,19 +167,6 @@ Napi::Value Table::AreBettingRoundsCompleted(const Napi::CallbackInfo& info) try
 } catch (const std::exception& e) {
     throw Napi::Error::New(info.Env(), e.what());
 }
-
-/* Napi::Value Table::GetHandPlayers(const Napi::CallbackInfo& info) { */
-/*     auto array = Napi::Array::New(info.Env(), poker::table::num_seats); */
-/*     auto players = _table.hand_players(); */
-/*     for (std::size_t i = 0; i < poker::table::num_seats; ++i) { */
-/*         if (players.filter()[i]) { */
-/*             array.Set(i, Player::ToObject(info.Env(), players[i])); */
-/*         } else { */
-/*             array.Set(i, info.Env().Null()); */
-/*         } */
-/*     } */
-/*     return array; */
-/* } */
 
 Napi::Value Table::GetHandPlayers(const Napi::CallbackInfo& info) try {
     auto array = Napi::Array::New(info.Env(), poker::table::num_seats);
@@ -250,38 +219,17 @@ Napi::Value Table::GetPots(const Napi::CallbackInfo& info) try {
     throw Napi::Error::New(info.Env(), e.what());
 }
 
-/* Napi::Value Table::GetRoundOfBetting(const Napi::CallbackInfo& info) { */
-/*     return RoundOfBetting::ToObject(info.Env(), _table.round_of_betting()); */
-/* } */
-
 Napi::Value Table::GetRoundOfBetting(const Napi::CallbackInfo& info) try {
     return ToValue(info.Env(), _table.round_of_betting());
 } catch (const std::exception& e) {
     throw Napi::Error::New(info.Env(), e.what());
 }
 
-/* Napi::Value Table::GetCommunityCards(const Napi::CallbackInfo& info) { */
-/*     return CommunityCards::ToObject(info.Env(), _table.community_cards()); */
-/* } */
-
 Napi::Value Table::GetCommunityCards(const Napi::CallbackInfo& info) try {
     return ToValue(info.Env(), _table.community_cards());
 } catch (const std::exception& e) {
     throw Napi::Error::New(info.Env(), e.what());
 }
-
-/* Napi::Value Table::GetAutomaticActions(const Napi::CallbackInfo& info) { */
-/*     auto aa = _table.automatic_actions(); */
-/*     auto array = Napi::Array::New(info.Env(), poker::table::num_seats); */
-/*     for (std::size_t i = 0; i < poker::table::num_seats; ++i) { */
-/*         if (aa[i]) { */
-/*             array.Set(i, TableAutomaticAction::ToObject(info.Env(), *aa[i])); */
-/*         } else { */
-/*             array.Set(i, info.Env().Null()); */
-/*         } */
-/*     } */
-/*     return array; */
-/* } */
 
 Napi::Value Table::GetAutomaticActions(const Napi::CallbackInfo& info) try {
     auto aa = _table.automatic_actions();
@@ -424,7 +372,6 @@ void Table::Showdown(const Napi::CallbackInfo& info) try {
 }
 
 void Table::SetAutomaticAction(const Napi::CallbackInfo& info) try {
-    // seat_index, automatic_action
     static const std::string actions[] = {
         "fold", "check/fold", "check", "call", "call any", "all in"
     };
