@@ -2,8 +2,8 @@
   "targets": [
     {
       "target_name": "addon",
-      "cflags": [ "-std=c++17" ],
-      "cflags_cc": [ "-std=c++17" ],
+      "cflags": [ "-std=c++17", "-fexceptions" ],
+      "cflags_cc": [ "-std=c++17", "-fexceptions" ],
       "sources": [ "src/addon.cc", "src/Table.cc" ],
       "include_dirs": [
         "<!@(node -p \"require('node-addon-api').include\")",
