@@ -18,7 +18,7 @@ npm install JankoDedic/pokerjs
 
 ## Usage
 
-The library provides a single class: `poker.Table`. The created table object represents a state machine and models a real-world poker table. Methods opearting on it have documented preconditions. Precondition violation will lead to an error being thrown. Poker table state is not guaranteed to be valid after this happens. Common usage looks something like this:
+The library provides a single class: `poker.Table`. The created table object represents a state machine and models a real-world poker table. Methods operating on it have documented preconditions. Precondition violation will lead to an error being thrown. Poker table state is not guaranteed to be valid after this happens. Common usage looks something like this:
 
 ```javascript
 const poker = require('pokerjs')
