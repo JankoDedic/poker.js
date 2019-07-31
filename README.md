@@ -47,7 +47,7 @@ table.showdown()
 
 ## API reference
 
-### poker.Table(forcedBets)
+### `poker.Table(forcedBets)`
 
 Creates an instance of the poker table object.
 
@@ -57,73 +57,73 @@ Parameters:
     - `[Number] smallBlind` - small blind
     - `[Number] bigBlind` - big blind
 
-### poker.Table.prototype.seats() => Array<Object>
+### `poker.Table.prototype.seats() => Array<Object>`
 
 Returns the state of the players seated at the table.
 
-### poker.Table.prototype.forcedBets() => Object
+### `poker.Table.prototype.forcedBets() => Object`
 
 Returns the current bet structure at the table.
 
-### poker.Table.prototype.isHandInProgress() => Boolean
+### `poker.Table.prototype.isHandInProgress() => Boolean`
 
 Returns `true` if hand is in progress.
 
-### poker.Table.prototype.isBettingRoundInProgress() => Boolean
+### `poker.Table.prototype.isBettingRoundInProgress() => Boolean`
 
 Returns `true` if betting round is in progress.
 
-### poker.Table.prototype.areBettingRoundsCompleted() => Boolean
+### `poker.Table.prototype.areBettingRoundsCompleted() => Boolean`
 
 Returns `true` if all betting rounds are completed.
 
-### poker.Table.prototype.handPlayers() => Array<Object>
+### `poker.Table.prototype.handPlayers() => Array<Object>`
 
 Returns the state of the players currently in the hand.
 
-### poker.Table.prototype.button() => Number
+### `poker.Table.prototype.button() => Number`
 
 Returns the seat index of the button.
 
-### poker.Table.prototype.playerToAct() => Number
+### `poker.Table.prototype.playerToAct() => Number`
 
 Returns the seat index of the player to act.
 
-### poker.Table.prototype.numActivePlayers() => Number
+### `poker.Table.prototype.numActivePlayers() => Number`
 
 Returns the number of active players in the active hand.
 
-### poker.Table.prototype.pots() => Array<Object>
+### `poker.Table.prototype.pots() => Array<Object>`
 
 Returns the state of all pots in the active hand.
 
-### poker.Table.prototype.roundOfBetting() => String
+### `poker.Table.prototype.roundOfBetting() => String`
 
 Returns the current round of betting (`preflop`|`flop`|`turn`|`river`).
 
-### poker.Table.prototype.communityCards() => Array<Object>
+### `poker.Table.prototype.communityCards() => Array<Object>`
 
 Returns the community cards for the active hand.
 
-### poker.Table.prototype.automaticActions() => Array<Object>
+### `poker.Table.prototype.automaticActions() => Array<Object>`
 
 Returns the toggled automatic actions at the table.
 
-### poker.Table.prototype.canSetAutomaticActions(seatIndex) => Boolean
+### `poker.Table.prototype.canSetAutomaticActions(seatIndex) => Boolean`
 
 Returns `true` if the player with a given `seatIndex` can set an automatic action.
 
 Parameters:
 - `[Number] seatIndex` - seat index of a player
 
-### poker.Table.prototype.legalAutomaticActions(seatIndex) => Array<String>
+### `poker.Table.prototype.legalAutomaticActions(seatIndex) => Array<String>`
 
 Returns an array of legal automatic actions for a player with a given `seatIndex`.
 
 Parameters:
 - `[Number] seatIndex` - seat index of a player
 
-### poker.Table.prototype.setForcedBets(forcedBets)
+### `poker.Table.prototype.setForcedBets(forcedBets)`
 
 Modifies the bet structure of the table.
 
@@ -133,7 +133,7 @@ Parameters:
     - `[Number] smallBlind` - small blind
     - `[Number] bigBlind` - big blind
 
-### poker.Table.prototype.sitDown(seatIndex, buyIn)
+### `poker.Table.prototype.sitDown(seatIndex, buyIn)`
 
 Indicate that a player took a given seat with a given buy-in.
 
@@ -141,18 +141,18 @@ Parameters:
 - `[Number] seatIndex` - index of an unoccupied seat
 - `[Number] buyIn` - amount of chips the player sat down with
 
-### poker.Table.prototype.standUp(seatIndex)
+### `poker.Table.prototype.standUp(seatIndex)`
 
 Indicate that a player has left the table.
 
 Parameters:
 - `[Number] seatIndex` - index of an occupied seat
 
-### poker.Table.prototype.startHand()
+### `poker.Table.prototype.startHand()`
 
 Start a new hand by collecting ante, placing blinds and dealing cards.
 
-### poker.Table.prototype.actionTaken(action[, betSize])
+### `poker.Table.prototype.actionTaken(action[, betSize])`
 
 Indicate that the player to act has taken an action.
 
@@ -160,15 +160,15 @@ Parameters:
 - `[String] action` - type of action (`fold`|`check`|`call`|`bet`|`raise`)
 - `[Number] betSize` - the size of the bet (if action is aggressive)
 
-### poker.Table.prototype.endBettingRound()
+### `poker.Table.prototype.endBettingRound()`
 
 End the current betting round which is no longer in progress. Collect the bets and form the pots.
 
-### poker.Table.prototype.showdown()
+### `poker.Table.prototype.showdown()`
 
 Perform a showdown. Evaluate the players' hands and pay the winners.
 
-### poker.Table.prototype.setAutomaticAction(seatIndex, automaticAction)
+### `poker.Table.prototype.setAutomaticAction(seatIndex, automaticAction)`
 
 Set the automatic action for a given player.
 
