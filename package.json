@@ -11,7 +11,6 @@
   },
   "repository": "github:JankoDedic/pokerjs",
   "main": "poker.js",
-  "private": true,
   "gypfile": true,
   "scripts": {
     "install": "npx node-gyp configure && npx node-gyp build",
