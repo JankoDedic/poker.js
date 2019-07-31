@@ -45,6 +45,18 @@ table.showdown()
 // ad infinitum...
 ```
 
+## API reference
+
+### poker.Table(forcedBets)
+
+Creates an instance of the poker table object.
+
+Parameters:
+    * `[Object] forcedBets` - bet structure of the table
+        * `[Number] ante` - ante
+        * `[Number] smallBlind` - small blind
+        * `[Number] bigBlind` - big blind
+
 ## License
 
 This project is licensed under the MIT license. See [LICENSE](LICENSE).
