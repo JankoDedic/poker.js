@@ -52,10 +52,10 @@ table.showdown()
 Creates an instance of the poker table object.
 
 Parameters:
-    - `[Object] forcedBets` - bet structure of the table
-        - `[Number] ante` - ante
-        - `[Number] smallBlind` - small blind
-        - `[Number] bigBlind` - big blind
+- `[Object] forcedBets` - bet structure of the table
+    - `[Number] ante` - ante
+    - `[Number] smallBlind` - small blind
+    - `[Number] bigBlind` - big blind
 
 ## License
 
