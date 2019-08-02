@@ -8,7 +8,8 @@ Napi::Value ToValue(Napi::Env env, poker::card_rank rank) {
 }
 
 Napi::Value ToValue(Napi::Env env, poker::card_suit suit) {
-    constexpr const char* suit_strings[] = { u8"\u2663", u8"\u2666", u8"\u2665", u8"\u2660" };
+    /* constexpr const char* suit_strings[] = { u8"\u2663", u8"\u2666", u8"\u2665", u8"\u2660" }; */
+    constexpr const char* suit_strings[] = { "clubs", "diamonds", "hearts", "spades" };
     return Napi::String::New(env, suit_strings[static_cast<int>(suit)]);
 }
 
