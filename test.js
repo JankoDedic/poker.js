@@ -4,10 +4,9 @@ var addon = require('bindings')('addon');
 
 const table = new addon.Table({ ante: 0, smallBlind: 10, bigBlind: 20 })
 console.log(table.forcedBets())
-console.log(table.handPlayers())
 
-// try {
-//   console.log(table.handPlayers())
-// } catch (e) {
-//   console.log(e)
-// }
+table.sitDown(0, 1000)
+table.sitDown(1, 1000)
+
+table.startHand()
+console.log(table.legalActions())

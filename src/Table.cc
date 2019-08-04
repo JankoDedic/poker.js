@@ -65,6 +65,51 @@ Napi::Value ToValue(Napi::Env env, const poker::table::automatic_action& aa) {
     }
 }
 
+Napi::Value ToValue(Napi::Env env, const poker::dealer::action& a) {
+    switch (a) {
+    case poker::dealer::action::fold:  return Napi::String::New(env, "fold");
+    case poker::dealer::action::check: return Napi::String::New(env, "check");
+    case poker::dealer::action::call:  return Napi::String::New(env, "call");
+    case poker::dealer::action::bet:   return Napi::String::New(env, "bet");
+    case poker::dealer::action::raise: return Napi::String::New(env, "raise");
+    default: assert(false); // internal error
+    }
+}
+
+Napi::Value ToValue(Napi::Env env, const poker::chip_range& cr) {
+    auto obj = Napi::Object::New(env);
+    obj.Set("min", Napi::Number::New(env, cr.min));
+    obj.Set("max", Napi::Number::New(env, cr.max));
+    return obj;
+}
+
+Napi::Value ToValue(Napi::Env env, const poker::dealer::action_range& ar) {
+    using action = poker::dealer::action;
+
+    auto obj = Napi::Object::New(env);
+    auto arr = Napi::Array::New(env);
+    auto i = 0;
+    if (static_cast<bool>(ar.action & action::fold)) {
+        arr.Set(i++, ToValue(env, action::fold));
+    }
+    if (static_cast<bool>(ar.action & action::check)) {
+        arr.Set(i++, ToValue(env, action::check));
+    }
+    if (static_cast<bool>(ar.action & action::call)) {
+        arr.Set(i++, ToValue(env, action::call));
+    }
+    if (static_cast<bool>(ar.action & action::bet)) {
+        arr.Set(i++, ToValue(env, action::bet));
+        obj.Set("chipRange", ToValue(env, ar.chip_range));
+    }
+    if (static_cast<bool>(ar.action & action::raise)) {
+        arr.Set(i++, ToValue(env, action::raise));
+        obj.Set("chipRange", ToValue(env, ar.chip_range));
+    }
+    obj.Set("actions", arr);
+    return obj;
+}
+
 Napi::FunctionReference Table::constructor;
 
 Napi::Object Table::Init(Napi::Env env, Napi::Object exports) {
@@ -83,6 +128,7 @@ Napi::Object Table::Init(Napi::Env env, Napi::Object exports) {
         InstanceMethod("pots", &Table::GetPots),
         InstanceMethod("roundOfBetting", &Table::GetRoundOfBetting),
         InstanceMethod("communityCards", &Table::GetCommunityCards),
+        InstanceMethod("legalActions", &Table::GetLegalActions),
         InstanceMethod("automaticActions", &Table::GetAutomaticActions),
         InstanceMethod("canSetAutomaticActions", &Table::CanSetAutomaticAction),
         InstanceMethod("legalAutomaticActions", &Table::GetLegalAutomaticActions),
@@ -228,6 +274,12 @@ Napi::Value Table::GetRoundOfBetting(const Napi::CallbackInfo& info) try {
 
 Napi::Value Table::GetCommunityCards(const Napi::CallbackInfo& info) try {
     return ToValue(info.Env(), _table.community_cards());
+} catch (const std::exception& e) {
+    throw Napi::Error::New(info.Env(), e.what());
+}
+
+Napi::Value Table::GetLegalActions(const Napi::CallbackInfo& info) try {
+    return ToValue(info.Env(), _table.legal_actions());
 } catch (const std::exception& e) {
     throw Napi::Error::New(info.Env(), e.what());
 }

@@ -27,6 +27,7 @@ private:
     Napi::Value GetPots(const Napi::CallbackInfo& info);
     Napi::Value GetRoundOfBetting(const Napi::CallbackInfo& info);
     Napi::Value GetCommunityCards(const Napi::CallbackInfo& info);
+    Napi::Value GetLegalActions(const Napi::CallbackInfo& info);
     Napi::Value GetAutomaticActions(const Napi::CallbackInfo& info);
     Napi::Value CanSetAutomaticAction(const Napi::CallbackInfo& info);
     Napi::Value GetLegalAutomaticActions(const Napi::CallbackInfo& info);
