@@ -32,6 +32,7 @@ Napi::Value ToValue(Napi::Env env, const poker::player& p) {
     obj.Set("holeCards", ToValue(env, p.hole_cards));
     obj.Set("betSize", Napi::Number::New(env, p.bet_size()));
     obj.Set("totalChips", Napi::Number::New(env, p.total_chips()));
+    obj.Set("stackSize", Napi::Number::New(env, p.stack()));
     return obj;
 }
 
