@@ -260,7 +260,7 @@ Napi::Value Table::GetPots(const Napi::CallbackInfo& info) try {
             array.Set(j, pots[i].eligible_players()[j]);
         }
         object.Set("eligiblePlayers", array);
-        pot_array.Set(i, array);
+        pot_array.Set(i, object);
     }
     return pot_array;
 } catch (const std::exception& e) {
