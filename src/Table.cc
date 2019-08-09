@@ -388,8 +388,9 @@ void Table::StartHand(const Napi::CallbackInfo& info) try {
             const auto button = info[0].As<Napi::Number>().Int32Value();
             _table.start_hand(*rng, button);
         }
+    } else {
+        _table.start_hand(*rng);
     }
-    _table.start_hand(*rng);
 } catch (const std::exception& e) {
     throw Napi::Error::New(info.Env(), e.what());
 }
