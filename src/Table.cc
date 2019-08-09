@@ -380,6 +380,15 @@ void Table::StandUp(const Napi::CallbackInfo& info) try {
 
 void Table::StartHand(const Napi::CallbackInfo& info) try {
     static auto rng = std::make_unique<std::mt19937>(std::random_device{}());
+
+    if (info.Length() == 1) {
+        if (!info[0].IsNumber()) {
+            Napi::TypeError::New(info.Env(), "Invalid argument for button: expected Number").ThrowAsJavaScriptException();
+        } else {
+            const auto button = info[0].As<Napi::Number>().Int32Value();
+            _table.start_hand(*rng, button);
+        }
+    }
     _table.start_hand(*rng);
 } catch (const std::exception& e) {
     throw Napi::Error::New(info.Env(), e.what());
