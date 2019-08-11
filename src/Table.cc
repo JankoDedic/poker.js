@@ -47,11 +47,13 @@ Napi::Value ToValue(Napi::Env env, const poker::community_cards& cc) {
 
 Napi::Value ToValue(Napi::Env env, const poker::round_of_betting& rob) {
     constexpr const char* rob_strings[] = { "preflop", "flop", "turn", "river" };
-    if (rob == poker::round_of_betting::preflop) return Napi::String::New(env, "preflop");
-    if (rob == poker::round_of_betting::flop) return Napi::String::New(env, "flop");
-    if (rob == poker::round_of_betting::turn) return Napi::String::New(env, "turn");
-    if (rob == poker::round_of_betting::river) return Napi::String::New(env, "river");
-    assert(false); // internal error
+    switch (rob) {
+    case poker::round_of_betting::preflop: return Napi::String::New(env, "preflop");
+    case poker::round_of_betting::flop:    return Napi::String::New(env, "flop");
+    case poker::round_of_betting::turn:    return Napi::String::New(env, "turn");
+    case poker::round_of_betting::river:   return Napi::String::New(env, "river");
+    default: assert(false); // internal error
+    }
 }
 
 Napi::Value ToValue(Napi::Env env, const poker::table::automatic_action& aa) {
