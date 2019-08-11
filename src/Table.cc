@@ -255,11 +255,11 @@ Napi::Value Table::GetNumActivePlayers(const Napi::CallbackInfo& info) try {
 Napi::Value Table::GetPots(const Napi::CallbackInfo& info) try {
     auto pots = _table.pots();
     auto pot_array = Napi::Array::New(info.Env());
-    for (std::size_t i = 0; i < pots.size(); ++i) {
+    for (auto i = 0; i < pots.size(); ++i) {
         auto object = Napi::Object::New(info.Env());
         object.Set("size", Napi::Number::New(info.Env(), pots[i].size()));
         auto array = Napi::Array::New(info.Env());
-        for (std::size_t j = 0; j < pots[i].eligible_players().size(); ++j) {
+        for (auto j = 0; j < pots[i].eligible_players().size(); ++j) {
             array.Set(j, pots[i].eligible_players()[j]);
         }
         object.Set("eligiblePlayers", array);
