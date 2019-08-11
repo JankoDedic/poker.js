@@ -1,12 +1,17 @@
-var addon = require('bindings')('addon');
+// const poker = require('bindings')('addon');
+const poker = require('./poker')
 
-// TODO write new tests
-
-const table = new addon.Table({ ante: 0, smallBlind: 10, bigBlind: 20 })
-console.log(table.forcedBets())
-
-table.sitDown(0, 1000)
-table.sitDown(1, 1000)
-
-table.startHand()
-console.log(table.legalActions())
+const t = new poker.Table({ ante: 0, smallBlind: 10, bigBlind: 20 })
+t.sitDown(0, 1000)
+t.sitDown(3, 1000)
+t.sitDown(5, 1000)
+t.sitDown(8, 1000)
+t.startHand(8)
+t.actionTaken('fold')
+t.actionTaken('fold')
+t.actionTaken('fold')
+t.endBettingRound()
+t.showdown()
+console.log('before hand start')
+t.startHand()
+console.log('after hand start')
