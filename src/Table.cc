@@ -1,6 +1,7 @@
 #include "Table.h"
 
 #include <random>
+#include <stdexcept>
 
 Napi::Value ToValue(Napi::Env env, poker::card_rank rank) {
     constexpr const char* rank_strings[] = { "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A" };
@@ -52,7 +53,7 @@ Napi::Value ToValue(Napi::Env env, const poker::round_of_betting& rob) {
     case poker::round_of_betting::flop:    return Napi::String::New(env, "flop");
     case poker::round_of_betting::turn:    return Napi::String::New(env, "turn");
     case poker::round_of_betting::river:   return Napi::String::New(env, "river");
-    default: assert(false); // internal error
+    default: throw std::invalid_argument{"Internal error: invalid round_of_betting object"};
     }
 }
 
@@ -64,7 +65,7 @@ Napi::Value ToValue(Napi::Env env, const poker::table::automatic_action& aa) {
     case poker::table::automatic_action::call:       return Napi::String::New(env, "call");
     case poker::table::automatic_action::call_any:   return Napi::String::New(env, "call any");
     case poker::table::automatic_action::all_in:     return Napi::String::New(env, "all in");
-    default: assert(false); // internal error
+    default: throw std::invalid_argument{"Internal error: invalid automatic_action object"};
     }
 }
 
@@ -75,7 +76,7 @@ Napi::Value ToValue(Napi::Env env, const poker::dealer::action& a) {
     case poker::dealer::action::call:  return Napi::String::New(env, "call");
     case poker::dealer::action::bet:   return Napi::String::New(env, "bet");
     case poker::dealer::action::raise: return Napi::String::New(env, "raise");
-    default: assert(false); // internal error
+    default: throw std::invalid_argument{"Internal error: invalid dealer::action object"};
     }
 }
 
