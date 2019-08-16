@@ -31,6 +31,7 @@ private:
     Napi::Value GetAutomaticActions(const Napi::CallbackInfo& info);
     Napi::Value CanSetAutomaticAction(const Napi::CallbackInfo& info);
     Napi::Value GetLegalAutomaticActions(const Napi::CallbackInfo& info);
+    Napi::Value GetHoleCards(const Napi::CallbackInfo& info);
 
     // Modifiers
     void SetForcedBets(const Napi::CallbackInfo& info);

@@ -30,7 +30,6 @@ Napi::Value ToValue(Napi::Env env, const poker::hole_cards& hc) {
 
 Napi::Value ToValue(Napi::Env env, const poker::player& p) {
     auto obj = Napi::Object::New(env);
-    obj.Set("holeCards", ToValue(env, p.hole_cards));
     obj.Set("betSize", Napi::Number::New(env, p.bet_size()));
     obj.Set("totalChips", Napi::Number::New(env, p.total_chips()));
     obj.Set("stackSize", Napi::Number::New(env, p.stack()));
@@ -136,6 +135,7 @@ Napi::Object Table::Init(Napi::Env env, Napi::Object exports) {
         InstanceMethod("automaticActions", &Table::GetAutomaticActions),
         InstanceMethod("canSetAutomaticActions", &Table::CanSetAutomaticAction),
         InstanceMethod("legalAutomaticActions", &Table::GetLegalAutomaticActions),
+        InstanceMethod("holeCards", &Table::GetHoleCards),
 
         InstanceMethod("setForcedBets", &Table::SetForcedBets),
         InstanceMethod("sitDown", &Table::SitDown),
@@ -340,6 +340,21 @@ Napi::Value Table::GetLegalAutomaticActions(const Napi::CallbackInfo& info) try 
     }
     if (static_cast<bool>(action & automatic_action::all_in)) {
         array.Set(i++, ToValue(env, automatic_action::all_in));
+    }
+    return array;
+} catch (const std::exception& e) {
+    throw Napi::Error::New(info.Env(), e.what());
+}
+
+Napi::Value Table::GetHoleCards(const Napi::CallbackInfo& info) try {
+    const auto hole_cards = _table.hole_cards();
+    auto array = Napi::Array::New(info.Env());
+    for (std::size_t i = 0; i < poker::table::num_seats; ++i) {
+        if (hole_cards.filter()[i]) {
+            array.Set(i, ToValue(info.Env(), hole_cards[i]));
+        } else {
+            array.Set(i, info.Env().Null());
+        }
     }
     return array;
 } catch (const std::exception& e) {
