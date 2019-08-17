@@ -17,3 +17,11 @@ t.showdown()
 console.log('before hand start')
 t.startHand()
 console.log('after hand start')
+
+// Caused a crash before
+const table = new poker.Table({ ante: 0, smallBlind: 10, bigBlind: 20 })
+table.sitDown(1, 1000)
+table.sitDown(8, 1000)
+table.startHand()
+table.standUp(1)
+console.log(table.isBettingRoundInProgress())
