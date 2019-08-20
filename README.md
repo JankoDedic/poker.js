@@ -1,6 +1,6 @@
-# pokerjs
+# poker.js
 
-**pokerjs** is a high-performance native Node module based on the [poker library](https://github.com/JankoDedic/poker) written in C++ for simulating poker gameplay. It can be used for running poker games with real players.
+**poker.js** is a high-performance native Node module based on the [poker library](https://github.com/JankoDedic/poker) written in C++ for simulating poker gameplay. It can be used for running poker games with real players.
 
 ## Installation
 
@@ -13,7 +13,7 @@ For macOS/Linux: You will have to have GCC 8 or Clang 7 installed to compile the
 You can install the package from this repository:
 
 ```
-npm install JankoDedic/pokerjs
+npm install poker
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ npm install JankoDedic/pokerjs
 The library provides a single class: `poker.Table`. The created table object represents a state machine and models a real-world poker table. Methods operating on it have documented preconditions. Precondition violation will lead to an error being thrown. Poker table state is not guaranteed to be valid after this happens. Common usage looks something like this:
 
 ```javascript
-const poker = require('pokerjs')
+const poker = require('poker')
 
 const table = new poker.Table({
     ante: 0,
