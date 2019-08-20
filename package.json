@@ -1,15 +1,15 @@
 {
-  "name": "pokerjs",
+  "name": "poker",
   "version": "0.0.1",
   "description": "Texas Hold'em Poker model",
   "keywords": [
     "poker"
   ],
-  "homepage": "https://github.com/JankoDedic/pokerjs",
+  "homepage": "https://github.com/JankoDedic/poker.js",
   "bugs": {
-    "url": "https://github.com/JankoDedic/pokerjs/issues"
+    "url": "https://github.com/JankoDedic/poker.js/issues"
   },
-  "repository": "github:JankoDedic/pokerjs",
+  "repository": "github:JankoDedic/poker.js",
   "main": "poker.js",
   "gypfile": true,
   "scripts": {
