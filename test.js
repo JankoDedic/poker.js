@@ -36,4 +36,12 @@ t2.endBettingRound()
 t2.showdown()
 t2.startHand()
 
+const t3 = new poker.Table({ ante: 0, smallBlind: 10, bigBlind: 20 })
+t3.sitDown(0, 1000)
+t3.sitDown(1, 1000)
+t3.startHand()
+t3.actionTaken('raise', 1000)
+console.log(t3.isBettingRoundInProgress())
+
 console.log('success')
+
